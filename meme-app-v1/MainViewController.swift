@@ -20,42 +20,81 @@ class MainViewController: UIViewController {
     @IBOutlet weak var bottomTextfield: UITextField!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var canvas: UIView!
     
+    var mediaController = MediaController()
+    var sharingController = SharingController()
     
-    
-    
+    var model = Meme()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mediaController.delegate = self
+        cameraButton.isEnabled = mediaController.canOpenCamera()
+        galleryButton.isEnabled = mediaController.canOpenGallery()
+        
+        resetModel()
+        updateScreenFromModel()
     }
 
     @IBAction func didTapOnCancel(_ sender: Any) {
         print("didTapOnCancel");
-        resetScreen()
+        resetModel()
+        updateScreenFromModel()
     }
     
     @IBAction func didTapOnExport(_ sender: Any) {
         print("didTapOnExport");
+        model.memeImage = generateMemedImage()
+        
+        if let img = model.memeImage {
+            sharingController.shareImage(image: img, viewController: self)
+        }
     }
     
     @IBAction func didTapOnCamera(_ sender: Any) {
         print("didTapOnCamera");
-//        cameraButton.isEnabled
+        mediaController.openCamera(viewController: self)
     }
     
     @IBAction func didTapOnGallery(_ sender: Any) {
         print("didTapOnGallery");
+        mediaController.openGallery(viewController: self)
+    }
+    
+    func resetModel() {
+        model.originalImage = nil
+        model.memeImage = nil
+        model.topText = "TOP"
+        model.bottomText = "BOTTOM"
+    }
+    
+    func updateScreenFromModel(){
+        imageView.image = model.originalImage
+        topTextField.text = model.topText
+        bottomTextField.text = model.bottomText
     }
     
     
-    
-    func resetScreen() {
-        imageView.image = nil
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
+    func generateMemedImage() -> UIImage {
+        
+        // Render view to an image, just canvas part. no toolbars.
+        UIGraphicsBeginImageContext(self.canvas.frame.size)
+        self.canvas.drawHierarchy(in: self.canvas.bounds, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return memedImage
     }
+}
+
+
+extension MainViewController : MediaControllerDelegate {
     
-    
-    
+    func didReadPicture(picture: UIImage) {
+        model.originalImage = picture
+        model.memeImage = nil
+        updateScreenFromModel()
+    }
+
 }
