@@ -30,12 +30,29 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        applyFontStyles()
         mediaController.delegate = self
         cameraButton.isEnabled = mediaController.canOpenCamera()
         galleryButton.isEnabled = mediaController.canOpenGallery()
         
         resetModel()
         updateScreenFromModel()
+    }
+    
+    func applyFontStyles(){
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        
+        let memeTextAttributes:[String:Any] = [
+            NSStrokeColorAttributeName: UIColor.black,
+            NSForegroundColorAttributeName: UIColor.white,
+            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSStrokeWidthAttributeName: -3,
+            NSParagraphStyleAttributeName: paragraphStyle]
+        
+        topTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
     }
 
     @IBAction func didTapOnCancel(_ sender: Any) {
