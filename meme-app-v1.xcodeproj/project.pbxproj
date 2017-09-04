@@ -15,6 +15,8 @@
 		99A7EE761F5DFF9200F9DF76 /* MediaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A7EE751F5DFF9200F9DF76 /* MediaController.swift */; };
 		99A7EE781F5E007700F9DF76 /* SharingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A7EE771F5E007700F9DF76 /* SharingController.swift */; };
 		99A7EE7A1F5E080C00F9DF76 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A7EE791F5E080C00F9DF76 /* Meme.swift */; };
+		99A7EE7E1F5E128D00F9DF76 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A7EE7D1F5E128D00F9DF76 /* AppConstants.swift */; };
+		99A7EE801F5E134900F9DF76 /* MainViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A7EE7F1F5E134900F9DF76 /* MainViewController+Keyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		99A7EE751F5DFF9200F9DF76 /* MediaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaController.swift; sourceTree = "<group>"; };
 		99A7EE771F5E007700F9DF76 /* SharingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingController.swift; sourceTree = "<group>"; };
 		99A7EE791F5E080C00F9DF76 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		99A7EE7D1F5E128D00F9DF76 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		99A7EE7F1F5E134900F9DF76 /* MainViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController+Keyboard.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				99A7EE731F5DEEFE00F9DF76 /* MainViewController.swift */,
+				99A7EE7F1F5E134900F9DF76 /* MainViewController+Keyboard.swift */,
 				99A7EE7B1F5E09DB00F9DF76 /* util */,
 			);
 			name = Controller;
@@ -109,6 +114,7 @@
 				99146B4A1F5DC0070004869F /* Assets.xcassets */,
 				99146B4C1F5DC0070004869F /* LaunchScreen.storyboard */,
 				99146B4F1F5DC0070004869F /* Info.plist */,
+				99A7EE7D1F5E128D00F9DF76 /* AppConstants.swift */,
 			);
 			name = Aux;
 			sourceTree = "<group>";
@@ -186,6 +192,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A7EE761F5DFF9200F9DF76 /* MediaController.swift in Sources */,
+				99A7EE7E1F5E128D00F9DF76 /* AppConstants.swift in Sources */,
+				99A7EE801F5E134900F9DF76 /* MainViewController+Keyboard.swift in Sources */,
 				99146B441F5DC0070004869F /* AppDelegate.swift in Sources */,
 				99A7EE781F5E007700F9DF76 /* SharingController.swift in Sources */,
 				99A7EE741F5DEEFE00F9DF76 /* MainViewController.swift in Sources */,

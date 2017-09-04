@@ -83,8 +83,8 @@ class MainViewController: UIViewController {
     func resetModel() {
         model.originalImage = nil
         model.memeImage = nil
-        model.topText = "TOP"
-        model.bottomText = "BOTTOM"
+        model.topText = AppConstants.defaultTopText
+        model.bottomText = AppConstants.defaultBottomText
     }
     
     func updateScreenFromModel(){
@@ -103,8 +103,18 @@ class MainViewController: UIViewController {
         UIGraphicsEndImageContext()
         return memedImage
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeToKeyboardNotifications()
+    }
 }
-
 
 extension MainViewController : MediaControllerDelegate {
     
