@@ -66,7 +66,7 @@ class MainViewController: UIViewController {
         model.memeImage = generateMemedImage()
         
         if let img = model.memeImage {
-            sharingController.shareImage(image: img, viewController: self)
+            sharingController.shareImage(image: img, viewController: self, button: sender as! UIBarButtonItem)
         }
     }
     
@@ -77,7 +77,7 @@ class MainViewController: UIViewController {
     
     @IBAction func didTapOnGallery(_ sender: Any) {
         print("didTapOnGallery");
-        mediaController.openGallery(viewController: self)
+        mediaController.openGallery(viewController: self, button: sender as! UIBarButtonItem)
     }
     
     func resetModel() {

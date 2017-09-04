@@ -29,25 +29,39 @@ class MediaController: NSObject {
         if let picker = imagePicker {
             picker.sourceType = .camera
             picker.delegate = self
+            //picker.allowsEditing = true
             viewController.present(picker, animated: true, completion: nil)
         }
     }
     
-    func openGallery(viewController: UIViewController){
+    func openGallery(viewController: UIViewController, button : UIBarButtonItem){
         
         switch UIDevice.current.userInterfaceIdiom {
             case .phone:
                 openGalleryForIPhone(viewController: viewController)
             case .pad:
-                openGalleryForIPad(viewController: viewController)
+                openGalleryForIPad(viewController: viewController, button:button)
             default:
                 // Ops
                 break
         }
     }
     
-    func openGalleryForIPad(viewController: UIViewController){
-        // TODO: Implement this.
+    func openGalleryForIPad(viewController: UIViewController, button : UIBarButtonItem){
+        
+        imagePicker = UIImagePickerController()
+        if let picker = imagePicker {
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            //picker.allowsEditing = true
+            
+            // Fix for ipad. popover
+            picker.modalPresentationStyle = .popover
+            viewController.present(picker, animated: true, completion: nil)
+            
+            picker.popoverPresentationController?.permittedArrowDirections = .any
+            picker.popoverPresentationController?.barButtonItem = button
+        }
     }
     
     func openGalleryForIPhone(viewController: UIViewController){
@@ -55,6 +69,7 @@ class MediaController: NSObject {
         if let picker = imagePicker {
             picker.sourceType = .photoLibrary
             picker.delegate = self
+            //picker.allowsEditing = true
             viewController.present(picker, animated: true, completion: nil)
         }
     }

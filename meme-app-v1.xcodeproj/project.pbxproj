@@ -93,18 +93,18 @@
 			children = (
 				99A7EE731F5DEEFE00F9DF76 /* MainViewController.swift */,
 				99A7EE7F1F5E134900F9DF76 /* MainViewController+Keyboard.swift */,
-				99A7EE7B1F5E09DB00F9DF76 /* util */,
+				99A7EE7B1F5E09DB00F9DF76 /* action */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		99A7EE7B1F5E09DB00F9DF76 /* util */ = {
+		99A7EE7B1F5E09DB00F9DF76 /* action */ = {
 			isa = PBXGroup;
 			children = (
 				99A7EE751F5DFF9200F9DF76 /* MediaController.swift */,
 				99A7EE771F5E007700F9DF76 /* SharingController.swift */,
 			);
-			name = util;
+			name = action;
 			sourceTree = "<group>";
 		};
 		99A7EE7C1F5E09E900F9DF76 /* Aux */ = {
