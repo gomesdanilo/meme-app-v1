@@ -18,6 +18,12 @@ class MainViewController: UIViewController {
     @IBOutlet weak var galleryButton: UIBarButtonItem!
     @IBOutlet weak var topTextfield: UITextField!
     @IBOutlet weak var bottomTextfield: UITextField!
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +32,7 @@ class MainViewController: UIViewController {
 
     @IBAction func didTapOnCancel(_ sender: Any) {
         print("didTapOnCancel");
+        resetScreen()
     }
     
     @IBAction func didTapOnExport(_ sender: Any) {
@@ -34,12 +41,20 @@ class MainViewController: UIViewController {
     
     @IBAction func didTapOnCamera(_ sender: Any) {
         print("didTapOnCamera");
+//        cameraButton.isEnabled
     }
     
     @IBAction func didTapOnGallery(_ sender: Any) {
         print("didTapOnGallery");
     }
     
+    
+    
+    func resetScreen() {
+        imageView.image = nil
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
+    }
     
     
     

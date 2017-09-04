@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -54,28 +55,33 @@
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nSf-HP-Qvg">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g20-gK-ShA">
-                                <rect key="frame" x="87" y="103" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g20-gK-ShA">
+                                <rect key="frame" x="46" y="94" width="283" height="33"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="27"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pQ2-JM-CFB">
-                                <rect key="frame" x="87" y="551" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pQ2-JM-CFB">
+                                <rect key="frame" x="46" y="560" width="283" height="33"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="27"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="g20-gK-ShA" firstAttribute="top" secondItem="m5d-sz-6dL" secondAttribute="bottom" constant="30" id="2fd-cB-BJG"/>
+                            <constraint firstItem="g20-gK-ShA" firstAttribute="leading" secondItem="sYa-Fo-Reb" secondAttribute="leadingMargin" constant="30" id="3vP-dI-LWc"/>
                             <constraint firstAttribute="trailing" secondItem="brl-9N-obr" secondAttribute="trailing" id="4vN-ia-6GJ"/>
                             <constraint firstItem="nSf-HP-Qvg" firstAttribute="leading" secondItem="sYa-Fo-Reb" secondAttribute="leading" id="BUr-oG-R0l"/>
+                            <constraint firstItem="brl-9N-obr" firstAttribute="top" secondItem="pQ2-JM-CFB" secondAttribute="bottom" constant="30" id="Dag-rK-BbG"/>
                             <constraint firstAttribute="trailing" secondItem="nSf-HP-Qvg" secondAttribute="trailing" id="Fb2-qL-6tW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pQ2-JM-CFB" secondAttribute="trailing" constant="30" id="Ihw-tF-1cH"/>
                             <constraint firstItem="brl-9N-obr" firstAttribute="leading" secondItem="sYa-Fo-Reb" secondAttribute="leading" id="MP5-lA-fSQ"/>
+                            <constraint firstItem="pQ2-JM-CFB" firstAttribute="leading" secondItem="sYa-Fo-Reb" secondAttribute="leadingMargin" constant="30" id="MkF-f3-zb4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g20-gK-ShA" secondAttribute="trailing" constant="30" id="O07-kD-nEb"/>
                             <constraint firstItem="brl-9N-obr" firstAttribute="top" secondItem="nSf-HP-Qvg" secondAttribute="bottom" id="hC8-gA-NAR"/>
                             <constraint firstItem="Vfi-z6-WCx" firstAttribute="top" secondItem="brl-9N-obr" secondAttribute="bottom" id="haO-8c-faP"/>
                             <constraint firstItem="nSf-HP-Qvg" firstAttribute="top" secondItem="m5d-sz-6dL" secondAttribute="bottom" id="pal-Vu-NPg"/>
@@ -94,12 +100,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomTextField" destination="pQ2-JM-CFB" id="TDI-kp-RRx"/>
                         <outlet property="bottomTextfield" destination="pQ2-JM-CFB" id="BSY-lD-Eq6"/>
                         <outlet property="cameraButton" destination="izu-yG-Ns3" id="cWr-Qn-Cr3"/>
                         <outlet property="cancelButton" destination="mUX-pD-igJ" id="qOy-Co-9k0"/>
                         <outlet property="exportButton" destination="6zg-94-mA9" id="7o1-nJ-ow4"/>
                         <outlet property="galleryButton" destination="whF-hT-F6K" id="VIK-KI-AVd"/>
                         <outlet property="imageView" destination="nSf-HP-Qvg" id="5se-mK-Kbb"/>
+                        <outlet property="topTextField" destination="g20-gK-ShA" id="YtK-St-7T4"/>
                         <outlet property="topTextfield" destination="g20-gK-ShA" id="VLg-kt-bIp"/>
                     </connections>
                 </viewController>
