@@ -56,7 +56,6 @@ class MainViewController: UIViewController {
     }
 
     @IBAction func didTapOnCancel(_ sender: Any) {
-        print("didTapOnCancel");
         resetModel()
         updateScreenFromModel()
     }
@@ -71,9 +70,9 @@ class MainViewController: UIViewController {
         updateModelWithTextFields()
         
         // Generate a memed image
-        currentMeme.memeImage = generateMemedImage()
+        currentMeme.memedImage = generateMemedImage()
         
-        if let img = currentMeme.memeImage {
+        if let img = currentMeme.memedImage {
             sharingController.shareImage(image: img, viewController: self, button: sender as! UIBarButtonItem, completionHandler: { (success) in
                 if success {
                     // Saves model here.
@@ -83,24 +82,29 @@ class MainViewController: UIViewController {
         }
     }
     
+//    func save() {
+//        // Save code goes here for app v2. No need to create model object here.
+//        print("Saving data... not implemented in this version")
+//    }
+
+    // Same code as tutorial.
     func save() {
-        // Save code goes here for app v2. No need to create model object here.
-        print("Saving data... not implemented in this version")
+        print("Saving meme image")
+        // Create the meme
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: currentMeme.memedImage!)
     }
     
     @IBAction func didTapOnCamera(_ sender: Any) {
-        print("didTapOnCamera");
         mediaController.openCamera(viewController: self)
     }
     
     @IBAction func didTapOnGallery(_ sender: Any) {
-        print("didTapOnGallery");
         mediaController.openGallery(viewController: self, button: sender as! UIBarButtonItem)
     }
     
     func resetModel() {
         currentMeme.originalImage = nil
-        currentMeme.memeImage = nil
+        currentMeme.memedImage = nil
         currentMeme.topText = AppConstants.defaultTopText
         currentMeme.bottomText = AppConstants.defaultBottomText
     }
@@ -140,7 +144,7 @@ extension MainViewController : MediaControllerDelegate {
     
     func didReadPicture(picture: UIImage) {
         currentMeme.originalImage = picture
-        currentMeme.memeImage = nil
+        currentMeme.memedImage = nil
         updateScreenFromModel()
     }
 
