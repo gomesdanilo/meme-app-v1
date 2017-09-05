@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
     var mediaController = MediaController()
     var sharingController = SharingController()
     
-    var model = Meme()
+    var currentMeme = Meme()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +63,9 @@ class MainViewController: UIViewController {
     
     @IBAction func didTapOnExport(_ sender: Any) {
         print("didTapOnExport");
-        model.memeImage = generateMemedImage()
+        currentMeme.memeImage = generateMemedImage()
         
-        if let img = model.memeImage {
+        if let img = currentMeme.memeImage {
             sharingController.shareImage(image: img, viewController: self, button: sender as! UIBarButtonItem)
         }
     }
@@ -81,16 +81,16 @@ class MainViewController: UIViewController {
     }
     
     func resetModel() {
-        model.originalImage = nil
-        model.memeImage = nil
-        model.topText = AppConstants.defaultTopText
-        model.bottomText = AppConstants.defaultBottomText
+        currentMeme.originalImage = nil
+        currentMeme.memeImage = nil
+        currentMeme.topText = AppConstants.defaultTopText
+        currentMeme.bottomText = AppConstants.defaultBottomText
     }
     
     func updateScreenFromModel(){
-        imageView.image = model.originalImage
-        topTextField.text = model.topText
-        bottomTextField.text = model.bottomText
+        imageView.image = currentMeme.originalImage
+        topTextField.text = currentMeme.topText
+        bottomTextField.text = currentMeme.bottomText
     }
     
     
@@ -119,8 +119,8 @@ class MainViewController: UIViewController {
 extension MainViewController : MediaControllerDelegate {
     
     func didReadPicture(picture: UIImage) {
-        model.originalImage = picture
-        model.memeImage = nil
+        currentMeme.originalImage = picture
+        currentMeme.memeImage = nil
         updateScreenFromModel()
     }
 
