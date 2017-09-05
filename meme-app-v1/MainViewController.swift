@@ -61,13 +61,31 @@ class MainViewController: UIViewController {
         updateScreenFromModel()
     }
     
+    func updateModelWithTextFields(){
+        currentMeme.topText = topTextField.text
+        currentMeme.bottomText = bottomTextField.text
+    }
+    
     @IBAction func didTapOnExport(_ sender: Any) {
-        print("didTapOnExport");
+        
+        updateModelWithTextFields()
+        
+        // Generate a memed image
         currentMeme.memeImage = generateMemedImage()
         
         if let img = currentMeme.memeImage {
-            sharingController.shareImage(image: img, viewController: self, button: sender as! UIBarButtonItem)
+            sharingController.shareImage(image: img, viewController: self, button: sender as! UIBarButtonItem, completionHandler: { (success) in
+                if success {
+                    // Saves model here.
+                    self.save()
+                }
+            })
         }
+    }
+    
+    func save() {
+        // Save code goes here for app v2. No need to create model object here.
+        print("Saving data... not implemented in this version")
     }
     
     @IBAction func didTapOnCamera(_ sender: Any) {

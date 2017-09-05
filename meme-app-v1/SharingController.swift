@@ -9,31 +9,23 @@
 import UIKit
 
 class SharingController: NSObject {
-    var activityViewController : UIActivityViewController?
-    func shareImage(image : UIImage, viewController : UIViewController, button : UIBarButtonItem) {
-        
-        switch UIDevice.current.userInterfaceIdiom {
-            case .phone:
-                shareImageIphone(image : image, viewController:viewController, button:button)
-            case .pad:
-                shareImageIpad(image : image, viewController:viewController, button:button)
-            default:
-                // Ops
-                break
-        }
-    }
-    func shareImageIphone(image : UIImage, viewController : UIViewController, button : UIBarButtonItem) {
-        activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        viewController.present(activityViewController!, animated: true, completion: nil)
-    }
     
-    func shareImageIpad(image : UIImage, viewController : UIViewController, button : UIBarButtonItem) {
-        activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+    var activityViewController : UIActivityViewController?
+    
+    
+    func shareImage(image : UIImage,
+                    viewController : UIViewController,
+                    button : UIBarButtonItem, completionHandler : @escaping (_ success : Bool) -> Void) {
         
-        activityViewController!.modalPresentationStyle = .popover
+        // This code will automatically open fullscreen on iPhone and popover on iPad.
+        activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        activityViewController?.completionWithItemsHandler = {(acitivityType, success, activityItems, error) in
+            completionHandler(success)
+        }
         
         viewController.present(activityViewController!, animated: true, completion: nil)
         
+        // Used on popover mode to show on iPad
         activityViewController!.popoverPresentationController?.permittedArrowDirections = .any
         activityViewController!.popoverPresentationController?.barButtonItem = button
     }
