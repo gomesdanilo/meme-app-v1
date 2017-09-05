@@ -109,6 +109,8 @@ class MainViewController: UIViewController {
         imageView.image = currentMeme.originalImage
         topTextField.text = currentMeme.topText
         bottomTextField.text = currentMeme.bottomText
+        
+        exportButton.isEnabled = currentMeme.originalImage != nil
     }
     
     
