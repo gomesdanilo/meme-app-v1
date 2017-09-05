@@ -14,7 +14,6 @@ protocol MediaControllerDelegate {
 
 class MediaController: NSObject {
     var delegate : MediaControllerDelegate?
-    var imagePicker : UIImagePickerController?
     
     func canOpenCamera() -> Bool {
         return UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -24,57 +23,21 @@ class MediaController: NSObject {
         return UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
     }
     
+    func presentImagePickerWith(viewController: UIViewController,
+                                sourceType: UIImagePickerControllerSourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        viewController.present(imagePicker, animated: true, completion: nil)
+    }
+    
     func openCamera(viewController: UIViewController){
-        imagePicker = UIImagePickerController()
-        if let picker = imagePicker {
-            picker.sourceType = .camera
-            picker.delegate = self
-            //picker.allowsEditing = true
-            viewController.present(picker, animated: true, completion: nil)
-        }
+        presentImagePickerWith(viewController: viewController, sourceType: .camera)
     }
     
     func openGallery(viewController: UIViewController, button : UIBarButtonItem){
-        
-        switch UIDevice.current.userInterfaceIdiom {
-            case .phone:
-                openGalleryForIPhone(viewController: viewController)
-            case .pad:
-                openGalleryForIPad(viewController: viewController, button:button)
-            default:
-                // Ops
-                break
-        }
+        presentImagePickerWith(viewController: viewController, sourceType: .photoLibrary)
     }
-    
-    func openGalleryForIPad(viewController: UIViewController, button : UIBarButtonItem){
-        
-        imagePicker = UIImagePickerController()
-        if let picker = imagePicker {
-            picker.sourceType = .photoLibrary
-            picker.delegate = self
-            //picker.allowsEditing = true
-            
-            // Fix for ipad. popover
-            picker.modalPresentationStyle = .popover
-            viewController.present(picker, animated: true, completion: nil)
-            
-            picker.popoverPresentationController?.permittedArrowDirections = .any
-            picker.popoverPresentationController?.barButtonItem = button
-        }
-    }
-    
-    func openGalleryForIPhone(viewController: UIViewController){
-        imagePicker = UIImagePickerController()
-        if let picker = imagePicker {
-            picker.sourceType = .photoLibrary
-            picker.delegate = self
-            //picker.allowsEditing = true
-            viewController.present(picker, animated: true, completion: nil)
-        }
-    }
-    
-    
 }
 
 extension MediaController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
