@@ -15,6 +15,4 @@ Specs
 ![](/Screenshots/03.png)
 ![](/Screenshots/04.png)
 ![](/Screenshots/05.png)
-![](/Screenshots/06.png)
-![](/Screenshots/07.png)
 
